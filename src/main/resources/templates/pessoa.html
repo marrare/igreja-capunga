@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Produto</title>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="materialize/css/materialize-stepper.css" />
+	<link type="text/css" rel="stylesheet" href="css/index.css"/>
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<nav class="teal lighten-2">
+		<div class="nav-wrapper">
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a href="/">Home</a></li>
+				<li><a href="cad_pessoa">Novo Membro</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container mt-20">
+		<h3>Novo Membro</h3>
+
+		<form action="salvar_pessoa" method="post">
+			<!--<div class="center-align">
+				<button type="submit" class="waves-effect waves-light btn center-align">Salvar</button>
+			</div>-->
+			
+			<ul class="stepper horizontal" id="horizontal">
+			  <li class="step active">
+			  	<!-- data-step-label="To step-title!" -->
+			    <div class="step-title waves-effect waves-dark">Pessoal</div>
+			    <div class="step-content">
+			      <div class="row">
+			        
+			        <div class="input-field col s6">
+						<input id="nome" name="nome" type="text" class="validate" required>
+						<label for="nome">Nome</label>
+					</div>
+					<div class="input-field col s2">
+						<input id="nascimento" name="nascimento" type="text" class="datepicker" required>
+						<label for="nascimento">Data de nascimento</label>
+					</div>
+					<div class="input-field col s2">
+				    	<select name="estadoCivil">
+					      <option value="" disabled selected></option>
+					      <option value="SOLTEIRO">Solteiro</option>
+					      <option value="CASADO">Casado</option>
+					      <option value="SEPARADO">Separado</option>
+					      <option value="DIVORCIADO">Divorciado</option>
+					      <option value="VIUVO">Viúvo</option>
+					    </select>
+					    <label>Estado civil</label>
+					</div>
+					<div class="input-field col s2">
+				    	<select name="genero">
+					      <option value="" disabled selected></option>
+					      <option value="MASCULINO">Masculino</option>
+					      <option value="FEMININO">Feminino</option>
+					    </select>
+					    <label>Gênero</label>
+					</div>
+					
+					<div class="input-field col s3">
+				    	<select name="escolaridade">
+					      <option value="" disabled selected></option>
+					      <option value="FUNDAMENTAL_1">Fundamental I (1º - 4º)</option>
+					      <option value="FUNDAMENTAL_2">Fundamental II (5º - 9º)</option>
+					      <option value="MEDIO">Médio (1º - 3º)</option>
+					      <option value="BACHAREL">Bacharel</option>
+					      <option value="LICENCIATURA">Licenciatura</option>
+					      <option value="POS_GRADUACAO">Pós Graduação</option>
+					      <option value="MESTRADO">Mestrado</option>
+					      <option value="DOUTORADO">Doutorado</option>
+					    </select>
+					    <label>Escolaridade</label>
+					</div>
+					<div class="input-field col s2">
+						<input id="naturalidade" name="naturalidade" type="text" class="validate">
+						<label for="naturalidade">Naturalidade</label>
+					</div>
+					<div class="input-field col s2">
+						<input id="nacionalidade" name="nacionalidade" type="text" class="validate">
+						<label for="nacionalidade">Nacionalidade</label>
+					</div>
+					
+					<div class="input-field col s3">
+						<input id="cpf" name="cpf" type="number" class="validate">
+						<label for="cpf">CPF</label>
+					</div>
+					<div class="input-field col s2">
+						<input id="rg" name="rg" type="number" class="validate">
+						<label for="rg">RG</label>
+					</div>
+					
+					<div class="input-field col s6">
+						<input id="nomePai" name="nomePai" type="text" class="validate" required>
+						<label for="nomePai">Nome do pai</label>
+					</div>
+					<div class="input-field col s6">
+						<input id="nomeMae" name="nomeMae" type="text" class="validate" required>
+						<label for="nomeMae">Nome da mãe</label>
+					</div>
+	
+					
+					
+					<div class="col s9">
+						<fieldset>
+							<legend>Endereço Pessoal</legend>
+							<div class="input-field col s3">
+								<input id="cepPessoal" name="cepPessoal" type="number" class="validate">
+								<label for="cepPessoal">CEP</label>
+							</div>
+							<div class="input-field col s9">
+								<input id="enderecoPessoal" name="enderecoPessoal" type="text" class="validate" required>
+								<label for="enderecoPessoal">Endereço</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="bairroPessoal" name="bairroPessoal" type="text" class="validate" required>
+								<label for="bairroPessoal">Bairro</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="cidadePessoal" name="cidadePessoal" type="text" class="validate" required>
+								<label for="cidadePessoal">Cidade</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="estadoPessoal" name="estadoPessoal" type="text" class="validate" required>
+								<label for="estadoPessoal">Estado</label>
+							</div>
+						</fieldset>
+					</div>
+					
+					<div class="col s3">
+						<fieldset>
+							<legend>Contato</legend>
+							<div class="input-field col s12">
+								<input id="numero" name="numero" type="tel" class="validate" required>
+								<label for="numero">Telefone</label>
+							</div>
+							<div class="input-field col s12">
+						    	<select name="tipoTelefone">
+							      <option value="" disabled selected></option>
+							      <option value="PESSOAL">Pessoal</option>
+							      <option value="COMERCIAL">Comercial</option>
+							      <option value="RESIDENCIAL">Residencial</option>
+							    </select>
+							    <label>Tipo telefone</label>
+							</div>
+							<div class="input-field col s12">
+								<input id="email" name="email" type="email" class="validate" required>
+								<label for="email">Email</label>
+							</div>
+						</fieldset>
+					</div>
+			      </div>
+			      <div class="step-actions">
+			        <button class="waves-effect waves-dark btn blue next-step">CONTINUAR</button>
+			      </div>
+			    </div>
+			  </li>
+			  
+			  
+			  <li class="step">
+			    <div class="step-title waves-effect waves-dark">Profissão</div>
+			    <div class="step-content">
+			      <div class="row">
+			      
+			      	<div class="input-field col s6">
+						<input id="ocupacao" name="ocupacao" type="text" class="validate">
+						<label for="ocupacao">Ocupação principal</label>
+					</div>
+			      	<div class="input-field col s6">
+						<input id="empresa" name="empresa" type="text" class="validate">
+						<label for="empresa">Empresa</label>
+					</div>
+					<div class="input-field col s3">
+						<input id="area" name="area" type="text" class="validate">
+						<label for="area">Área</label>
+					</div>
+					<div class="input-field col s3">
+						<input id="setor" name="setor" type="text" class="validate">
+						<label for="setor">Setor</label>
+					</div>
+					<div class="input-field col s3">
+						<input id="formacao" name="formacao" type="text" class="validate">
+						<label for="formacao">Formacao</label>
+					</div>
+					<div class="input-field col s3">
+				    	<select name="tipoProfissao">
+					      <option value="" disabled selected></option>
+					      <option value="EMPRESARIO">Empresário</option>
+					      <option value="EMPREGADO">Empregado</option>
+					      <option value="AUTONOMO">Autônomo</option>
+					      <option value="VOLUNTARIO">Voluntário</option>
+					    </select>
+					    <label>Tipo de trabalho</label>
+					</div>
+	
+					
+					<div class="col s12">
+						<fieldset>
+							<legend>Endereço Trabalho</legend>
+							<div class="input-field col s3">
+								<input id="cepTrabalho" name="cepTrabalho" type="number" class="validate">
+								<label for="cepTrabalho">CEP</label>
+							</div>
+							<div class="input-field col s9">
+								<input id="enderecoTrabalho" name="enderecoTrabalho" type="text" class="validate">
+								<label for="enderecoTrabalho">Endereço</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="bairroTrabalho" name="bairroTrabalho" type="text" class="validate">
+								<label for="bairroTrabalho">Bairro</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="cidadeTrabalho" name="cidadeTrabalho" type="text" class="validate">
+								<label for="cidadeTrabalho">Cidade</label>
+							</div>
+							<div class="input-field col s4">
+								<input id="estadoTrabalho" name="estadoTrabalho" type="text" class="validate">
+								<label for="estadoTrabalho">Estado</label>
+							</div>	
+						</fieldset>
+					</div>
+			      </div>
+			      <div class="step-actions">
+			      	<button class="waves-effect waves-dark btn blue next-step">CONTINUAR</button>
+			        <button class="waves-effect waves-dark btn-flat previous-step">VOLTAR</button>
+			      </div>
+			    </div>
+			  </li>
+			  
+			  
+			  <li class="step">
+			    <div class="step-title waves-effect waves-dark">Igreja</div>
+			    <div class="step-content">
+			    	<div class="row">
+			    		<div class="col s8">
+			    			<div class="input-field col s4">
+								<div class="switch center-align">
+					    			<label>
+									    <input name="batismo" type="checkbox" onClick="checkBatismo(event.target.checked)">
+									    <span>Batizado</span>
+								    </label>
+							  	</div>
+							</div>
+							<div class="input-field col s4">
+								<div class="switch center-align">
+					    			<label>
+									    <input name="aclamacao" type="checkbox" onClick="checkAclamacao(event.target.checked)">
+									    <span>Aclamação</span>
+								    </label>
+							  	</div>
+							</div>
+							<div class="input-field col s4">
+								<div class="switch center-align">
+					    			<label>
+									    <input name="carta" type="checkbox" onClick="checkCarta(event.target.checked)">
+									    <span>Carta</span>
+								    </label>
+							  	</div>
+							</div>
+							<div id="batismo" style="display:none;">
+								<div class="input-field col s4">
+									<input id="batismoDate" name="batismoDate" type="text" class="datepicker">
+									<label for="batismoDate">Data de batismo</label>
+								</div>
+								<div class="input-field col s4">
+									<input id="igrejaBatismo" name="igrejaBatismo" type="text" class="validate">
+									<label for="igrejaBatismo">Igreja</label>
+								</div>
+								<div class="input-field col s4">
+									<input id="pastorBatismo" name="pastorBatismo" type="text" class="validate">
+									<label for="pastorBatismo">Pastor</label>
+								</div>
+							</div>
+							<div id="aclamacao" style="display:none;">
+								<div class="input-field col s4">
+									<input id="aclamacaoDate" name="aclamacaoDate" type="text" class="datepicker">
+									<label for="aclamacaoDate">Data da aclamação</label>
+								</div>
+							</div>
+							<div id="carta" style="display:none;">
+								<div class="input-field col s4">
+									<input id="cartaDate" name="cartaDate" type="text" class="datepicker">
+									<label for="cartaDate">Data da carta</label>
+								</div>
+							</div>
+							<div class="col s12">
+								<fieldset>
+									<legend>Oportunidades de serviços na igreja</legend>
+									<div class="input-field col s12">
+										<input id="funcaoExercida" name="funcaoExercida" type="text" class="validate">
+										<label for="funcaoExercida">Funções exercidas</label>
+									</div>
+									<div class="input-field col s12">
+										<input id="areaInteresse" name="areaInteresse" type="text" class="validate">
+										<label for="areaInteresse">Áreas de Interesse</label>
+									</div>
+									<div class="input-field col s12">
+										<input id="tempoDisponivelSemana" name="tempoDisponivelSemana" type="text" class="validate">
+										<label for="tempoDisponivelSemana">Tempo disponível por semana</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<div class="col s4">
+							<fieldset>
+								<legend>Preferências</legend>
+								<div class="input-field col s12">
+									<input id="hinoPreferencia" name="hinoPreferencia" type="text" class="validate">
+									<label for="hinoPreferencia">Hino/Cântico</label>
+								</div>
+								<div class="input-field col s12">
+									<input id="textoBiblicoPreferencia" name="textoBiblicoPreferencia" type="text" class="validate">
+									<label for="textoBiblicoPreferencia">Texto Bíblico</label>
+								</div>
+								<div class="input-field col s12">
+									<input id="passatempoPreferencia" name="passatempoPreferencia" type="text" class="validate">
+									<label for="passatempoPreferencia">Passatempo</label>
+								</div>
+								<div class="input-field col s12">
+									<input id="esportePreferencia" name="esportePreferencia" type="text" class="validate">
+									<label for="esportePreferencia">Esporte</label>
+								</div>
+								<div class="input-field col s12">
+									<div class="switch col s6">
+						    			<label>
+										    <input name="hccPreferencia" type="checkbox">
+										    <span>HCC</span>
+									    </label>
+								  	</div>
+								  	<div class="switch col s6">
+									    <label>
+										    <input name="ccPreferencia" type="checkbox">
+										    <span>CC</span>
+									    </label>
+								  	</div>
+								</div>
+							</fieldset>
+						</div>
+			    	</div>
+					<div class="step-actions">
+						<button class="waves-effect waves-dark btn blue" type="submit">CONFIRMAR</button>
+						<button class="waves-effect waves-dark btn-flat previous-step">VOLTAR</button>
+					</div>
+			    </div>
+			  </li>
+			</ul>
+		</form>
+		
+	
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize-stepper.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

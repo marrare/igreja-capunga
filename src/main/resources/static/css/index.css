@@ -1,0 +1,17 @@
+.mt-20 {
+	margin-top: 20px;
+}
+
+#horizontal {
+	min-height: 60vh;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+.step-actions {
+	position: relative !important;
+}
+
+textarea {    
+	height: 6rem !important; 
+}
